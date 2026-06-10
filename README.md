@@ -149,6 +149,17 @@ Access:
 
 http://localhost:8080/swagger-ui.html
 
+## Deployment and Infrastructure
+
+The application was initially developed using an in-memory database and later migrated to PostgreSQL to provide persistent data storage suitable for production environments. 
+The database migration involved updating the data source configuration, validating entity mappings, and ensuring that all application data was correctly persisted.
+
+To simplify deployment and maintain consistency across different environments, the application was containerized using Docker. 
+A Docker image was created for the Spring Boot application, enabling it to run independently of the host machine and making the deployment process more reliable and reproducible.
+
+The Dockerized application was successfully deployed on Render, allowing the backend services and API documentation to be publicly accessible. 
+This deployment experience provided practical exposure to containerization, cloud deployment, environment configuration, and managing production-ready applications.
+
 ## Database Configuration
 
 Example:
@@ -161,11 +172,10 @@ spring.jpa.hibernate.ddl-auto=update
 
 ## How to Run
 ### Clone Repository
-git clone https://github.com/prvmeenu/personal-finance-tracker.git
+git clone https://github.com/prvmeenu/finance-tracker-backend
 ### Navigate to Project
-cd personal-finance-tracker
+cd finance-tracker-backend
 ### Configure PostgreSQL
-
 Create database:
 
 CREATE DATABASE finance_tracker;
@@ -185,6 +195,8 @@ mvn spring-boot:run
 * Reporting
 * Budget Management
 * Swagger Documentation
+* Docker Containerization
+* Render Deployment
 
 Core backend development is complete.
 
@@ -203,6 +215,17 @@ Through this project, the following concepts were implemented and practiced:
 * Budget Analysis
 * Pagination
 * Backend Project Structuring
+
+### Github link :
+You can access the complete source code, project documentation, and future updates through the GitHub repository:
+https://github.com/prvmeenu/finance-tracker-backend
+
+### Swagger UI:
+The API documentation is deployed and publicly accessible through Swagger UI. 
+It provides an interactive interface to explore and test all available endpoints, view request and response models, and understand the application's API structure.
+https://finance-tracker-backend-u1k3.onrender.com/swagger-ui/index.html
+
+Users can execute API requests directly from the browser using the "Try it out" feature provided by Swagger UI, making it easier to understand and test the backend functionality.
 
 Author
 Meenakshi Veerappan
