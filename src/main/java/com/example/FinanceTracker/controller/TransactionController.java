@@ -13,6 +13,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.*;
 
@@ -45,7 +46,10 @@ public class TransactionController {
 
     @Operation(summary = "Get all Transactions")
     @GetMapping
-    public Page<TransactionResponse> getTransaction(Pageable pageable) {
+    public Page<TransactionResponse> getTransaction(@RequestParam(defaultValue = "0") int page,
+                                                    @RequestParam(defaultValue = "10") int size) {
+
+        Pageable pageable = PageRequest.of(page,size);
 
         return service.getTransaction(pageable);
     }
@@ -112,18 +116,3 @@ public class TransactionController {
 
     }
 }
-//Swagger link: http://localhost:8080/swagger-ui/index.html
-//H2 console : http://localhost:8080/h2-console/login.do?jsessionid=b9b21335e3e22eaa1264ce2d7d58b87d
-//SELECT * FROM Transaction WHERE MONTH(DATE) = 4;
-//"email": "alex@gamil.com",  "password": "pass987"
-//email : johnsmith@gamil.com, password : password987
-// Pagination eg: {
-//  "page": 0,
-//  "size": 5,
-//  "sort": [
-//    "date,desc"
-//  ]
-//h2:file:./data/testdb
-//spring.datasource.driverClassName=org.h2.Driver
-//spring.jpa.database-platform=org.hibernate.dialect.H2Dialect
-//spring.h2.console.enabled=true

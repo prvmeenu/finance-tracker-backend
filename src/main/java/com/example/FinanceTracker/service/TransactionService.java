@@ -276,6 +276,7 @@ public class TransactionService {
 
     public BudgetStatusResponse budgetAnalysis(int month, int year, String category) {
         List<CategoryExpenseResponse> monthlyReport = categoryMonthlyReport(month, year);
+        User user = getCurrentUser();
         //CategoryExpenseResponse Dto changes
         double currentValue = 0.0;
         for (CategoryExpenseResponse report : monthlyReport) {
@@ -286,7 +287,7 @@ public class TransactionService {
         }
 
         //double currentValue = monthlyReport.getOrDefault(category, 0.0);
-        Budget budget = budgetRepository.findByCategoryIgnoreCase(category);
+        Budget budget = budgetRepository.findByUserAndCategoryIgnoreCase(user,category);
         if (budget == null) {
             throw new ResourceNotFoundException("No budget limit for this Category " + category);
         }

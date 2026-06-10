@@ -1,6 +1,7 @@
 package com.example.FinanceTracker.controller;
 
 import com.example.FinanceTracker.dto.request.BudgetRequest;
+import com.example.FinanceTracker.dto.response.BudgetResponse;
 import com.example.FinanceTracker.dto.response.BudgetStatusResponse;
 import com.example.FinanceTracker.service.BudgetService;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -19,13 +20,13 @@ public class BudgetController {
     private final BudgetService service;
 
     @PostMapping
-    public BudgetStatusResponse addBudgetLimits(@Valid @RequestBody BudgetRequest budget) {
+    public BudgetResponse addBudgetLimits(@Valid @RequestBody BudgetRequest budget) {
 
         return service.saveBudget(budget);
     }
 
     @GetMapping
-    public List<BudgetStatusResponse> getAllBudgetLimits() {
+    public List<BudgetResponse> getAllBudgetLimits() {
         return service.getBudget();
     }
 
